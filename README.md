@@ -14,3 +14,17 @@ branches and thus you are free from collisions.
 
 It also exports new environment variables: `CI_PROJECT_NAME` and
 `CI_PROJECT_NAMESPACE`.
+
+## Getting Started
+
+```bash
+# Get the code
+git clone https://github.com/mikew/gitlab-ci-runner-docker-example.git /opt/my-runner
+cd /opt/my-runner
+
+# Build / bring containers up
+docker-compose up
+
+# Register the runner (or update ./data/gitlab-runner-confi.toml)
+docker exec -it myrunner_dispatcher_1 gitlab-runner register
+```
