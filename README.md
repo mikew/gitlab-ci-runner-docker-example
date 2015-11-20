@@ -3,8 +3,8 @@
 > This was written in response to some issues I had with how GitLab CI
 > handles builds.
 >
-> Issues references:
-> https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/289
+> Issues references:  
+> https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/289  
 > https://gitlab.com/gitlab-org/gitlab-ce/issues/3506
 
 This is of course just an example. Your builds will happen in
