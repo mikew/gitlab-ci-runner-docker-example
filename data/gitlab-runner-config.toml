@@ -1,0 +1,18 @@
+concurrent = 4
+
+[[runners]]
+  url = "https://git.example.com/ci"
+  token = "1234567890abcdef"
+  name = "myrunner_dispatcher_1"
+  executor = "docker"
+  [runners.docker]
+    image = "myrunner_runner"
+    privileged = false
+    # If gitlab-ci-runner accepted `volumes_from`, you could list the
+    # `runnerdata` volume created by docker-compose and use relative paths.
+    # Since it doesn't, you'll have to change the paths below yourself.
+    volumes = [
+      "/cache",
+      "/var/run/docker.sock:/var/run/docker.sock",
+      "/opt/my-runner/persistent/builds/:/builds-persistent",
+    ]

@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -e
+
+if [ -z "$GITLAB_CI" ]; then
+  exec "$@"
+fi
+
+if [[ "${CI_BUILD_REPO}" =~ .+/(.+)/(.+)\.git$ ]]; then
+  export CI_PROJECT_NAMESPACE=${BASH_REMATCH[1]}
+  export CI_PROJECT_NAME=${BASH_REMATCH[2]}
+fi
+
+UNIQUE_CI_PROJECT_DIR="/builds-persistent/${CI_PROJECT_NAMESPACE}--${CI_PROJECT_NAME}--${CI_BUILD_REF_NAME}"
+
+while true; do
+  input=$(cat -)
+  if [ -z "$input" ]; then
+    sleep 5
+  else
+    echo "$input" | sed -E -e "s|${CI_PROJECT_DIR}|${UNIQUE_CI_PROJECT_DIR}|g" | bash -s
+    break
+  fi
+done

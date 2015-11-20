@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# https://github.com/gitlabhq/gitlab-ci-runner/issues/56#issuecomment-59450728
+if [ $1 = "clean" ]; then
+  exit 0
+else
+  /usr/bin/git "$@"
+fi

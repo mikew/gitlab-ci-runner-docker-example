@@ -1,0 +1,21 @@
+dispatcher:
+  image: gitlab/gitlab-runner
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./data/gitlab-runner-config.toml:/etc/gitlab-runner/config.toml
+
+runner:
+  build: .
+  volumes_from:
+    - runnerdata
+
+# gitlab-ci-runner doesn't have a `volumes_from` directive, so these need to be
+# copied and pasted into `gitlab-runner-config.toml`
+runnerdata:
+  image: alpine
+  command: "true"
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./persistent/buildsnewomg:/builds-persistent
+    - ./persistent/.s3cfg:/home/gitlab-runner/.s3cfg
+    - ./persistent/.netrc:/home/gitlab-runner/.netrc
