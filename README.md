@@ -10,7 +10,7 @@
 This is of course just an example. Your builds will happen in
 `/builds-persistent/$NAMESPACE--$PROJECT--$BRANCH`, as opposed to
 `/builds/$PROJECT`. This means no collision between projects / forks /
-branches and thus you are free from collisions.
+branches and your builds should be faster.
 
 It also exports new environment variables: `CI_PROJECT_NAME` and
 `CI_PROJECT_NAMESPACE`.
